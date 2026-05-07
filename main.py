@@ -146,40 +146,59 @@ async def auto_session(bot):
         await asyncio.sleep(10)
 
 def main():
+    try:
+        print("🚀 BOT STARTING...")
 
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
+        # Build bot
+        app = ApplicationBuilder().token(BOT_TOKEN).build()
 
-    # Commands
-    app.add_handler(CommandHandler("start", start_command))
-    app.add_handler(CommandHandler("signal", signal_command))
+        # Commands
+        app.add_handler(CommandHandler("start", start_command))
+        app.add_handler(CommandHandler("signal", signal_command))
 
-    print("🚀 VIP Prediction Bot Running...")
+        print("✅ Bot built successfully")
 
-    # START SCHEDULER
-    start_scheduler()
+        # Scheduler start (SAFE)
+        try:
+            if not scheduler.running:
+                scheduler.start()
+                print("✅ Scheduler started")
+        except Exception as e:
+            print("⚠️ Scheduler error:", e)
 
-    # MORNING SESSION
-    scheduler.add_job(
-        lambda: asyncio.create_task(
-            auto_session(app.bot)
-        ),
-        trigger="cron",
-        hour=10,
-        minute=0
-    )
+        # Jobs
+        try:
+            scheduler.add_job(
+                lambda: asyncio.create_task(auto_session(app.bot)),
+                trigger="cron",
+                hour=10,
+                minute=0
+            )
 
-    # EVENING SESSION
-    scheduler.add_job(
-        lambda: asyncio.create_task(
-            auto_session(app.bot)
-        ),
-        trigger="cron",
-        hour=20,
-        minute=0
-    )
+            scheduler.add_job(
+                lambda: asyncio.create_task(auto_session(app.bot)),
+                trigger="cron",
+                hour=20,
+                minute=0
+            )
 
-    # RUN BOT
-    app.run_polling()
+            print("✅ Jobs added")
+        except Exception as e:
+            print("⚠️ Job error:", e)
+
+        print("🤖 BOT RUNNING NOW...")
+
+        # RUN BOT
+        app.run_polling()
+
+    except Exception as e:
+        print("🔥 CRASH ERROR:")
+        print("TYPE:", type(e))
+        print("MESSAGE:", e)
+
+        import traceback
+        traceback.print_exc()
+    
 
 # =========================
 # RUN BOT
