@@ -1,17 +1,13 @@
-print("FILE STARTED")
+print("1 START")
 
-try:
-    print("IMPORTING CONFIG")
-    from config import BOT_TOKEN, ADMIN_ID
+print("2 BEFORE IMPORT")
 
-    print("IMPORTING TELEGRAM")
-    from telegram.ext import ApplicationBuilder
+from config import BOT_TOKEN
 
-    print("IMPORT SUCCESS")
+print("3 CONFIG OK")
 
-except Exception as e:
-    print("🔥 IMPORT ERROR:")
-    import traceback
-    traceback.print_exc()
+from telegram.ext import ApplicationBuilder
 
-print("END FILE")
+print("4 TELEGRAM OK")
+
+print("5 END TEST")
