@@ -1,3 +1,5 @@
+import traceback
+print("BOT STARTED")
 import random
 import asyncio
 
@@ -277,8 +279,7 @@ import traceback
 
 if __name__ == "__main__":
     try:
-        print("🚀 BOT STARTING...")
         main()
     except Exception as e:
-        print("❌ ERROR OCCURRED:")
+        print("❌ FULL ERROR:")
         print(traceback.format_exc())
