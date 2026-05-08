@@ -273,5 +273,12 @@ def main():
 # RUN
 # =========================
 
+import traceback
+
 if __name__ == "__main__":
-    main()
+    try:
+        print("🚀 BOT STARTING...")
+        main()
+    except Exception as e:
+        print("❌ ERROR OCCURRED:")
+        print(traceback.format_exc())
