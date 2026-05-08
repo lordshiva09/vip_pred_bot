@@ -1,53 +1,20 @@
 import random
-from config import COLORS, PREDICTIONS
-
-# Global Round Number
-round_number = 745
-
-# =========================
-# GENERATE SIGNAL
-# =========================
 
 def generate_signal():
 
-    global round_number
+    start_number = random.randint(100, 997)
 
-    color = random.choice(COLORS)
-    prediction = random.choice(PREDICTIONS)
+    signal = f"""
+🔥 VIP PREDICTION 🔥
 
-    accuracy = random.randint(90, 99)
+🎯 ENTRY :
+{start_number}
 
-    confidence_levels = [
-        "LOW",
-        "MEDIUM",
-        "HIGH",
-        "VERY HIGH"
-    ]
+🎯 TARGET :
+{start_number + 1}
 
-    confidence = random.choice(confidence_levels)
-
-    message = f"""
-╔══════════════════╗
-   🔥 VIP SIGNAL 🔥
-╚══════════════════╝
-
-🎯 ROUND : {round_number}
-
-🟢 COLOR : {color}
-📊 PREDICTION : {prediction}
-
-📈 ACCURACY : {accuracy}%
-🧠 AI CONFIDENCE : {confidence}
-
-━━━━━━━━━━━━━━
-⚡ PLAY SAFE
-💎 PREMIUM ENTRY
-━━━━━━━━━━━━━━
-
-⏰ NEXT ROUND : {round_number + 1}
-🚀 STAY CONNECTED
+🎯 SAFE :
+{start_number + 2}
 """
 
-    round_number += 1
-
-    return message
+    return signal

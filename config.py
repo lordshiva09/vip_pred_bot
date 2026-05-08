@@ -5,9 +5,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Telegram Config
+# Telegram Config
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID"))
-CHANNEL_ID = os.getenv("CHANNEL_ID")
+
+CHANNEL_IDS = [
+    -1003978872708,
+    -1003914530277,
+    -1003864819950
+]
 
 # Session Timings
 MORNING_SESSION_TIME = "10:00"
